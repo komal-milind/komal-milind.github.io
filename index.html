@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Komal & Milind — Wedding Invitation</title>
+  <meta property="og:title" content="Komal & Milind Wedding — 23 June 2026"/>
+  <meta property="og:description" content="You are cordially invited to the wedding celebration of Komal & Milind"/>
+  <meta property="og:type" content="website"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Devanagari:wght@400;500;600&family=Dancing+Script:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- ══ ENVELOPE INTRO ══ -->
+  <div id="envelope-screen">
+    <div id="envelope-wrap">
+      <svg id="env-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+        <!-- envelope body -->
+        <rect x="0" y="40" width="280" height="140" rx="6" fill="#2A0A10" stroke="#C9933A" stroke-width="1.2"/>
+        <!-- flap closed -->
+        <path id="env-flap" d="M0 40 L140 110 L280 40 Z" fill="#3D1015" stroke="#C9933A" stroke-width="1"/>
+        <!-- bottom V fold lines -->
+        <line x1="0" y1="180" x2="140" y2="110" stroke="#5A2030" stroke-width="0.8"/>
+        <line x1="280" y1="180" x2="140" y2="110" stroke="#5A2030" stroke-width="0.8"/>
+        <!-- wax seal -->
+        <circle cx="140" cy="108" r="18" fill="#7B1E2E" stroke="#C9933A" stroke-width="1.5"/>
+        <text x="140" y="114" text-anchor="middle" font-size="16" fill="#E8C06A" font-family="serif">ॐ</text>
+      </svg>
+      <p id="tap-label">Tap to Open</p>
+    </div>
+  </div>
+
+  <!-- ══ MAIN INVITATION ══ -->
+  <main id="invitation" class="hidden">
+
+    <!-- 0. GANESH PAGE -->
+    <section id="ganesh" class="section ganesh-section">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <div class="mandala-wrap">
+        <svg class="mandala" viewBox="0 0 160 160">
+          <g transform="translate(80,80)">
+            <circle r="74" fill="none" stroke="#C9933A" stroke-width="0.8" opacity="0.5"/>
+            <circle r="60" fill="none" stroke="#C9933A" stroke-width="0.5" opacity="0.3"/>
+            <g id="m-petals">
+              <ellipse rx="7" ry="20" cy="-48" fill="#7B1E2E" opacity="0.8"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#C9933A" opacity="0.5" transform="rotate(22.5)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#7B1E2E" opacity="0.8" transform="rotate(45)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#C9933A" opacity="0.5" transform="rotate(67.5)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#7B1E2E" opacity="0.8" transform="rotate(90)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#C9933A" opacity="0.5" transform="rotate(112.5)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#7B1E2E" opacity="0.8" transform="rotate(135)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#C9933A" opacity="0.5" transform="rotate(157.5)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#7B1E2E" opacity="0.8" transform="rotate(180)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#C9933A" opacity="0.5" transform="rotate(202.5)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#7B1E2E" opacity="0.8" transform="rotate(225)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#C9933A" opacity="0.5" transform="rotate(247.5)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#7B1E2E" opacity="0.8" transform="rotate(270)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#C9933A" opacity="0.5" transform="rotate(292.5)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#7B1E2E" opacity="0.8" transform="rotate(315)"/>
+              <ellipse rx="7" ry="20" cy="-48" fill="#C9933A" opacity="0.5" transform="rotate(337.5)"/>
+            </g>
+            <circle r="28" fill="#200608" stroke="#C9933A" stroke-width="1.5"/>
+            <text text-anchor="middle" dominant-baseline="central" font-size="26" fill="#E8C06A" font-family="serif">ॐ</text>
+          </g>
+        </svg>
+      </div>
+      <h1 class="ganesh-title">॥ श्री गणेशाय नमः ॥</h1>
+      <div class="divider"></div>
+      <div class="ganesh-devtas">
+        सभी देवताओं की जय<br/>
+        माता पार्वती की जय<br/>
+        भगवान शिव की जय<br/>
+        श्री विष्णु भगवान की जय<br/>
+        माँ लक्ष्मी की जय<br/>
+        श्री राम जी की जय
+      </div>
+      <div class="divider"></div>
+      <p class="ganesh-sub">शुभ विवाह की हार्दिक शुभकामनाएँ</p>
+      <button class="scroll-btn" onclick="scrollTo('hero')">
+        <span>Scroll</span>
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </section>
+
+    <!-- 1. HERO -->
+    <section id="hero" class="section hero-section">
+      <div class="petals-container" id="petals-container"></div>
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <p class="eyebrow">The Wedding Celebration of</p>
+      <div class="couple-names">
+        <span class="name">Komal</span>
+        <span class="amp">weds</span>
+        <span class="name">Milind</span>
+      </div>
+      <div class="divider"></div>
+      <p class="tagline">Request the honour of your presence</p>
+      <div class="date-chip">23 June 2026 &nbsp;·&nbsp; Tuesday</div>
+      <button class="scroll-btn" onclick="scrollTo('welcome')">
+        <span>Scroll</span>
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </section>
+
+    <!-- 2. WELCOME + SCRATCH -->
+    <section id="welcome" class="section welcome-section">
+      <svg class="wave" viewBox="0 0 320 20" preserveAspectRatio="none"><path d="M0 10 Q40 0 80 10 Q120 20 160 10 Q200 0 240 10 Q280 20 320 10" fill="none" stroke="#C9933A" stroke-width="1"/></svg>
+      <p class="welcome-msg">
+        Big day, big vibes, big celebration!<br/>
+        Come eat, dance &amp; celebrate with us! ✨
+      </p>
+      <svg class="wave" viewBox="0 0 320 20" preserveAspectRatio="none"><path d="M0 10 Q40 20 80 10 Q120 0 160 10 Q200 20 240 10 Q280 0 320 10" fill="none" stroke="#C9933A" stroke-width="1"/></svg>
+
+      <div class="scratch-card">
+        <p class="section-title">✦ Scratch to Reveal ✦</p>
+        <div class="scratch-wrap">
+          <div id="scratch-reveal">💍 Komal &amp; Milind — 23rd June 2026 💍</div>
+          <canvas id="scratch-canvas"></canvas>
+        </div>
+      </div>
+      <button class="scroll-btn" onclick="scrollTo('date-sec')">
+        <span>Scroll</span>
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </section>
+
+    <!-- 3. DATE + COUNTDOWN -->
+    <section id="date-sec" class="section date-section">
+      <div class="confetti-container" id="confetti-container"></div>
+      <p class="eyebrow">Our forever begins</p>
+      <div class="divider"></div>
+      <p class="invited-script">You're Invited!</p>
+      <h2 class="big-date">23rd June, 2026</h2>
+      <p class="date-day">Tuesday</p>
+      <div class="divider"></div>
+      <p class="cd-caption">Counting Down to Forever</p>
+      <div class="countdown-row">
+        <div class="cd-box"><span class="cd-num" id="cd-days">--</span><span class="cd-lbl">Days</span></div>
+        <div class="cd-box"><span class="cd-num" id="cd-hrs">--</span><span class="cd-lbl">Hours</span></div>
+        <div class="cd-box"><span class="cd-num" id="cd-min">--</span><span class="cd-lbl">Mins</span></div>
+        <div class="cd-box"><span class="cd-num" id="cd-sec">--</span><span class="cd-lbl">Secs</span></div>
+      </div>
+      <button class="scroll-btn" onclick="scrollTo('timeline')">
+        <span>Scroll</span>
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </section>
+
+    <!-- 4. TIMELINE -->
+    <section id="timeline" class="section timeline-section">
+      <span class="section-icon">🕐</span>
+      <h2 class="section-title">Program Timeline</h2>
+      <div class="divider"></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div><p class="tl-time">4:00 PM</p><p class="tl-event">Guest Arrival &amp; Baraat</p></div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div><p class="tl-time">5:00 PM</p><p class="tl-event">Varmala Ceremony</p></div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div><p class="tl-time">6:00 PM</p><p class="tl-event">Wedding Rituals &amp; Pheras</p></div></div>
+        <div class="tl-item"><div class="tl-dot gold"></div><div><p class="tl-time">8:00 PM</p><p class="tl-event">Dinner Reception &amp; Celebrations</p></div></div>
+      </div>
+      <button class="scroll-btn" onclick="scrollTo('ceremonies')">
+        <span>Scroll</span>
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </section>
+
+    <!-- 5. CEREMONIES -->
+    <section id="ceremonies" class="section ceremony-section">
+      <span class="section-icon">🌸</span>
+      <h2 class="section-title">Wedding Ceremonies</h2>
+      <div class="divider"></div>
+      <div class="ceremony-grid">
+        <div class="ceremony-card"><span>💛</span><p>Haldi</p></div>
+        <div class="ceremony-card"><span>🎨</span><p>Mehendi</p></div>
+        <div class="ceremony-card"><span>🪔</span><p>Sangeet</p></div>
+        <div class="ceremony-card"><span>🔥</span><p>Pheras</p></div>
+      </div>
+      <button class="scroll-btn" onclick="scrollTo('venue')">
+        <span>Scroll</span>
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </section>
+
+    <!-- 6. VENUE -->
+    <section id="venue" class="section venue-section">
+      <span class="section-icon">📍</span>
+      <h2 class="section-title">Venue</h2>
+      <div class="divider"></div>
+      <p class="venue-name">YOUR VENUE NAME</p>
+      <p class="venue-addr">Address Line 1, City – PIN<br/>State, India</p>
+      <div class="map-placeholder">
+        <iframe
+          title="Venue Map"
+          width="100%"
+          height="220"
+          style="border:0;border-radius:10px;"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=Jaipur,Rajasthan">
+        </iframe>
+      </div>
+      <a class="gold-btn" href="https://maps.google.com/?q=Jaipur+Rajasthan" target="_blank">Open on Google Maps</a>
+      <button class="scroll-btn" onclick="scrollTo('gifts')">
+        <span>Scroll</span>
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </section>
+
+    <!-- 7. GIFTS -->
+    <section id="gifts" class="section gifts-section">
+      <div class="gifts-card">
+        <span class="gifts-icon">🎁</span>
+        <h2 class="section-title">Gifts</h2>
+        <div class="divider"></div>
+        <p class="gifts-text">Your blessings are the<br/>bestest Gift.</p>
+      </div>
+      <button class="scroll-btn" onclick="scrollTo('rsvp')">
+        <span>Scroll</span>
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </section>
+
+    <!-- 8. RSVP / SEND MESSAGE -->
+    <section id="rsvp" class="section rsvp-section">
+      <span class="section-icon">✉️</span>
+      <h2 class="section-title">Send a Message</h2>
+      <div class="divider"></div>
+      <form id="rsvp-form" class="rsvp-form" onsubmit="submitRSVP(event)">
+        <div class="field"><label>Your Name</label><input type="text" id="r-name" placeholder="Your full name" required/></div>
+        <div class="field"><label>Email</label><input type="email" id="r-email" placeholder="you@example.com" required/></div>
+        <div class="field">
+          <label>Will you be attending?</label>
+          <select id="r-attend">
+            <option value="">Select...</option>
+            <option>Yes, joyfully! 🎉</option>
+            <option>Unable to attend</option>
+            <option>Maybe</option>
+          </select>
+        </div>
+        <div class="field"><label>Your Message</label><textarea id="r-msg" rows="3" placeholder="Write your wishes..."></textarea></div>
+        <button type="submit" class="gold-btn full">Send Message 💌</button>
+        <div id="rsvp-success" class="success-msg hidden">✓ Your wishes have been sent! Komal &amp; Milind are grateful. 💕</div>
+      </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <svg viewBox="0 0 320 20" width="100%" preserveAspectRatio="none" class="wave"><path d="M0 10 Q40 0 80 10 Q120 20 160 10 Q200 0 240 10 Q280 20 320 10" fill="none" stroke="#C9933A" stroke-width="1"/></svg>
+      <p class="footer-msg">We can't wait to celebrate with you!</p>
+      <div class="divider"></div>
+      <p class="footer-names">Komal &amp; Milind</p>
+      <svg class="footer-mandala" viewBox="0 0 80 80">
+        <g transform="translate(40,40)">
+          <circle r="36" fill="none" stroke="#C9933A" stroke-width="0.8"/>
+          <ellipse rx="4" ry="12" cy="-24" fill="#C9933A" opacity="0.7"/>
+          <ellipse rx="4" ry="12" cy="-24" fill="#C9933A" opacity="0.7" transform="rotate(45)"/>
+          <ellipse rx="4" ry="12" cy="-24" fill="#C9933A" opacity="0.7" transform="rotate(90)"/>
+          <ellipse rx="4" ry="12" cy="-24" fill="#C9933A" opacity="0.7" transform="rotate(135)"/>
+          <ellipse rx="4" ry="12" cy="-24" fill="#C9933A" opacity="0.7" transform="rotate(180)"/>
+          <ellipse rx="4" ry="12" cy="-24" fill="#C9933A" opacity="0.7" transform="rotate(225)"/>
+          <ellipse rx="4" ry="12" cy="-24" fill="#C9933A" opacity="0.7" transform="rotate(270)"/>
+          <ellipse rx="4" ry="12" cy="-24" fill="#C9933A" opacity="0.7" transform="rotate(315)"/>
+          <circle r="10" fill="#200608" stroke="#C9933A" stroke-width="0.8"/>
+          <text text-anchor="middle" dominant-baseline="central" font-size="12" fill="#C9933A" font-family="serif">ॐ</text>
+        </g>
+      </svg>
+      <svg viewBox="0 0 320 20" width="100%" preserveAspectRatio="none" class="wave"><path d="M0 10 Q40 20 80 10 Q120 0 160 10 Q200 20 240 10 Q280 0 320 10" fill="none" stroke="#C9933A" stroke-width="1"/></svg>
+    </footer>
+
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
