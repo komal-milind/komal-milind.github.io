@@ -10,12 +10,12 @@
   const invitation = document.getElementById('invitation');
 
   function openEnvelope() {
-    envScreen.classList.add('opening');
+    envScreen.classList.add('fade-out');
     setTimeout(function () {
       envScreen.style.display = 'none';
       invitation.classList.remove('hidden');
       requestAnimationFrame(function () {
-        invitation.classList.add('visible');
+        invitation.classList.add('in');
       });
       initAll();
     }, 1000);
@@ -45,7 +45,7 @@
   /*  FALLING PETALS                   */
   /* ────────────────────────────────── */
   function spawnPetals() {
-    var container = document.getElementById('petals-container');
+    var container = document.getElementById('petals-root');
     if (!container) return;
     var colors = ['#8B2030', '#C9933A', '#7B1E2E', '#A0522D'];
     for (var i = 0; i < 12; i++) {
@@ -68,7 +68,7 @@
   /*  CONFETTI DOTS                    */
   /* ────────────────────────────────── */
   function spawnConfetti() {
-    var container = document.getElementById('confetti-container');
+    var container = document.getElementById('confetti-root');
     if (!container) return;
     var colors = ['#C9933A', '#7B1E2E', '#E8C06A', '#FFFFFF'];
     var shapes = [
@@ -182,10 +182,10 @@
       var m = Math.floor((diff % 3600000) / 60000);
       var s = Math.floor((diff % 60000) / 1000);
 
-      var days = document.getElementById('cd-days');
-      var hrs  = document.getElementById('cd-hrs');
-      var min  = document.getElementById('cd-min');
-      var sec  = document.getElementById('cd-sec');
+      var days = document.getElementById('cd-d');
+      var hrs  = document.getElementById('cd-h');
+      var min  = document.getElementById('cd-m');
+      var sec  = document.getElementById('cd-s');
 
       if (days) days.textContent = d;
       if (hrs)  hrs.textContent  = pad(h);
@@ -203,25 +203,16 @@
   /*  SCROLL REVEAL                    */
   /* ────────────────────────────────── */
   function initReveal() {
-    var targets = document.querySelectorAll(
-      '.section-title, .couple-names, .ganesh-title, .ganesh-devtas, ' +
-      '.big-date, .countdown-row, .timeline, .ceremony-grid, ' +
-      '.venue-name, .venue-addr, .map-placeholder, .gifts-card, .rsvp-form, ' +
-      '.welcome-msg, .scratch-card, .tl-item, .ceremony-card, .cd-caption'
-    );
-
-    targets.forEach(function (el) {
-      el.classList.add('reveal');
-    });
+    var targets = document.querySelectorAll('.reveal');
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add('in');
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
 
     targets.forEach(function (el) { observer.observe(el); });
   }
