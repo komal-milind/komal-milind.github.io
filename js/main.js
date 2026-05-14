@@ -1,6 +1,6 @@
-/* ══════════════════════════════════════
+/* ════════════════════════════════════
    Komal & Milind Wedding — main.js
-══════════════════════════════════════ */
+════════════════════════════════════ */
 
 (function () {
   'use strict';
@@ -26,12 +26,6 @@
     if (e.key === 'Enter' || e.key === ' ') openEnvelope();
   });
 
-  /* ── Smooth scroll helper ── */
-  window.scrollTo = function (id) {
-    var el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   /* ── All initialisations ── */
   function initAll() {
     spawnPetals();
@@ -39,6 +33,52 @@
     initScratch();
     initCountdown();
     initReveal();
+    initMusic();
+  }
+
+  /* ────────────────────────────────── */
+  /*  MUSIC — HTML5 Audio              */
+  /*  Put your MP3 at music/song.mp3   */
+  /* ────────────────────────────────── */
+  function initMusic() {
+    var btn = document.getElementById('music-btn');
+    if (!btn) return;
+
+    var audio = document.createElement('audio');
+    audio.src = 'music/song.mp3';
+    audio.loop = true;
+    audio.volume = 0.5;
+    audio.preload = 'auto';
+    document.body.appendChild(audio);
+
+    var playing = false;
+
+    function updateBtn() {
+      btn.textContent = playing ? '♪' : '♩';
+      btn.title = playing ? 'Pause music' : 'Play music';
+      btn.classList.toggle('music-playing', playing);
+    }
+
+    // Auto-start — envelope tap counts as the user gesture browsers require
+    audio.play().then(function () {
+      playing = true;
+      updateBtn();
+    }).catch(function () {
+      // Autoplay blocked — user can tap the button manually
+      playing = false;
+      updateBtn();
+    });
+
+    btn.addEventListener('click', function () {
+      if (playing) {
+        audio.pause();
+        playing = false;
+      } else {
+        audio.play();
+        playing = true;
+      }
+      updateBtn();
+    });
   }
 
   /* ────────────────────────────────── */
@@ -109,11 +149,9 @@
 
     var ctx = canvas.getContext('2d');
 
-    // Gold scratch layer
     ctx.fillStyle = '#B8852E';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Scratch text
     ctx.fillStyle = '#E8C06A';
     ctx.font = 'bold 14px Lato, sans-serif';
     ctx.textAlign = 'center';
@@ -161,7 +199,6 @@
     canvas.addEventListener('mousemove', function (e) { if (!isDrawing) return; var p = getPos(e); scratch(p.x, p.y); checkComplete(); });
     canvas.addEventListener('mouseup', function () { isDrawing = false; checkComplete(); });
     canvas.addEventListener('mouseleave', function () { isDrawing = false; });
-
     canvas.addEventListener('touchstart', function (e) { e.preventDefault(); isDrawing = true; var p = getPos(e); scratch(p.x, p.y); }, { passive: false });
     canvas.addEventListener('touchmove', function (e) { e.preventDefault(); if (!isDrawing) return; var p = getPos(e); scratch(p.x, p.y); checkComplete(); }, { passive: false });
     canvas.addEventListener('touchend', function () { isDrawing = false; checkComplete(); });
@@ -174,9 +211,8 @@
     var target = new Date('2026-06-23T00:00:00');
 
     function update() {
-      var now = new Date();
+      var now  = new Date();
       var diff = Math.max(0, target - now);
-
       var d = Math.floor(diff / 86400000);
       var h = Math.floor((diff % 86400000) / 3600000);
       var m = Math.floor((diff % 3600000) / 60000);
@@ -194,7 +230,6 @@
     }
 
     function pad(n) { return String(n).padStart(2, '0'); }
-
     update();
     setInterval(update, 1000);
   }
@@ -204,7 +239,6 @@
   /* ────────────────────────────────── */
   function initReveal() {
     var targets = document.querySelectorAll('.reveal');
-
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -213,36 +247,7 @@
         }
       });
     }, { threshold: 0.12 });
-
     targets.forEach(function (el) { observer.observe(el); });
   }
-
-  /* ────────────────────────────────── */
-  /*  RSVP SUBMIT                      */
-  /* ────────────────────────────────── */
-  window.submitRSVP = function (e) {
-    e.preventDefault();
-    var name   = document.getElementById('r-name').value.trim();
-    var email  = document.getElementById('r-email').value.trim();
-    var attend = document.getElementById('r-attend').value;
-    var msg    = document.getElementById('r-msg').value.trim();
-
-    if (!name || !email) {
-      alert('Please fill in your name and email.');
-      return;
-    }
-
-    // Here you would normally POST to a backend / Formspree / EmailJS
-    // For now we log and show success
-    console.log('RSVP:', { name, email, attend, msg });
-
-    var successEl = document.getElementById('rsvp-success');
-    if (successEl) {
-      successEl.classList.remove('hidden');
-      successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    document.getElementById('rsvp-form').reset();
-  };
 
 })();
