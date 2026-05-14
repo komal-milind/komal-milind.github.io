@@ -22,12 +22,9 @@
         <clipPath id="envClip"><rect x="0" y="50" width="300" height="150" rx="6"/></clipPath>
       </defs>
       <rect x="0" y="50" width="300" height="150" rx="6" fill="#1e0408" stroke="#c9933a" stroke-width="1"/>
-      <!-- side folds -->
       <line x1="0" y1="200" x2="150" y2="118" stroke="#3a1020" stroke-width="0.8"/>
       <line x1="300" y1="200" x2="150" y2="118" stroke="#3a1020" stroke-width="0.8"/>
-      <!-- flap -->
       <path id="env-flap" d="M0 50 L150 130 L300 50 Z" fill="#2a0810" stroke="#c9933a" stroke-width="0.8"/>
-      <!-- diagonal pattern -->
       <g clip-path="url(#envClip)" opacity="0.07">
         <line x1="0" y1="50" x2="300" y2="200" stroke="#c9933a" stroke-width="0.6"/>
         <line x1="50" y1="50" x2="300" y2="175" stroke="#c9933a" stroke-width="0.6"/>
@@ -35,7 +32,6 @@
         <line x1="0" y1="75" x2="250" y2="200" stroke="#c9933a" stroke-width="0.6"/>
         <line x1="0" y1="100" x2="200" y2="200" stroke="#c9933a" stroke-width="0.6"/>
       </g>
-      <!-- seal -->
       <circle cx="150" cy="128" r="22" fill="#7b1e2e" stroke="#c9933a" stroke-width="1.5"/>
       <circle cx="150" cy="128" r="17" fill="none" stroke="#c9933a" stroke-width="0.6" opacity="0.5"/>
       <text x="150" y="135" text-anchor="middle" font-size="18" fill="#e8c06a" font-family="serif">ॐ</text>
@@ -47,7 +43,6 @@
 <!-- ══ INVITATION ══ -->
 <div id="invitation" class="hidden">
 
-  <!-- sticky music btn placeholder -->
   <button id="music-btn" class="music-btn" title="Toggle music" aria-label="Toggle background music">♪</button>
 
   <!-- ░░ GANESH BLOCK ░░ -->
@@ -57,35 +52,36 @@
     <div class="corner bl"></div><div class="corner br"></div>
     <svg class="mandala-svg" viewBox="0 0 160 160">
       <g transform="translate(80,80)">
-        <circle r="72" fill="none" stroke="#c9933a" stroke-width="0.7" opacity="0.4"/>
-        <circle r="57" fill="none" stroke="#c9933a" stroke-width="0.4" opacity="0.25"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(22.5)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(45)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(67.5)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(90)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(112.5)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(135)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(157.5)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(180)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(202.5)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(225)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(247.5)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(270)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(292.5)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(315)"/>
-        <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(337.5)"/>
+        <!-- spinning petals layer -->
+        <g>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="28s" repeatCount="indefinite"/>
+          <circle r="72" fill="none" stroke="#c9933a" stroke-width="0.7" opacity="0.4"/>
+          <circle r="57" fill="none" stroke="#c9933a" stroke-width="0.4" opacity="0.25"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(22.5)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(45)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(67.5)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(90)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(112.5)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(135)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(157.5)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(180)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(202.5)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(225)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(247.5)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(270)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(292.5)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#7b1e2e" opacity="0.8" transform="rotate(315)"/>
+          <ellipse rx="6" ry="18" cy="-46" fill="#c9933a" opacity="0.45" transform="rotate(337.5)"/>
+        </g>
+        <!-- static centre — ॐ never rotates -->
         <circle r="26" fill="#1a0508" stroke="#c9933a" stroke-width="1.2"/>
         <text text-anchor="middle" dominant-baseline="central" font-size="24" fill="#e8c06a" font-family="serif">ॐ</text>
       </g>
     </svg>
     <h1 class="ganesh-title">॥ श्री गणेशाय नमः ॥</h1>
     <div class="hr-gold"></div>
-    <div class="devtas">
-      सभी देवताओं की जय &nbsp;·&nbsp; माता पार्वती की जय<br/>
-      भगवान शिव की जय &nbsp;·&nbsp; श्री विष्णु भगवान की जय<br/>
-      माँ लक्ष्मी की जय &nbsp;·&nbsp; श्री राम जी की जय
-    </div>
+    <div class="devtas">॥ जय पीर दादाजी की ॥</div>
     <div class="hr-gold"></div>
     <p class="ganesh-sub">शुभ विवाह की हार्दिक शुभकामनाएँ</p>
   </div>
@@ -95,6 +91,12 @@
     <div id="petals-root"></div>
     <div class="corner tl"></div><div class="corner tr"></div>
     <div class="corner bl"></div><div class="corner br"></div>
+
+    <!-- Wedding Logo -->
+    <div class="wedding-logo reveal">
+      <img src="css/logo.png" alt="K & M monogram" class="logo-img"/>
+    </div>
+
     <p class="eyebrow reveal">The Wedding Celebration of</p>
     <div class="hero-names reveal">
       <span class="hname">Komal</span>
@@ -103,10 +105,21 @@
     </div>
     <div class="hr-gold reveal"></div>
     <p class="hero-tagline reveal">Request the honour of your presence</p>
-    <div class="date-badge reveal">23 June 2026 &nbsp;·&nbsp; Tuesday</div>
   </div>
 
-  <!-- ░░ TRANSITION BAND: welcome ░░ -->
+  <!-- ░░ COUPLE PHOTO BLOCK ░░ -->
+  <div class="block photo-block">
+    <div class="couple-photo-wrap reveal">
+      <div class="photo-frame-decor tl-f"></div>
+      <div class="photo-frame-decor tr-f"></div>
+      <div class="photo-frame-decor bl-f"></div>
+      <div class="photo-frame-decor br-f"></div>
+      <img src="css/couple.jpg" alt="Komal & Milind" class="couple-photo-img"/>
+    </div>
+    <p class="photo-caption reveal">Komal &amp; Milind</p>
+  </div>
+
+  <!-- ░░ TRANSITION BAND ░░ -->
   <div class="band wave-band">
     <svg class="wv" viewBox="0 0 800 40" preserveAspectRatio="none"><path d="M0 20 Q100 5 200 20 Q300 35 400 20 Q500 5 600 20 Q700 35 800 20" fill="none" stroke="#c9933a" stroke-width="0.9"/></svg>
     <p class="band-text reveal">Big day, big vibes, big celebration! Come eat, dance &amp; celebrate with us ✨</p>
@@ -115,18 +128,18 @@
 
   <!-- ░░ SCRATCH + DATE BLOCK ░░ -->
   <div class="block mid-block">
-    <!-- Scratch card -->
+    <!-- Scratch card — reveals the wedding date only -->
     <div class="scratch-card reveal">
       <p class="card-label">✦ Scratch to Reveal ✦</p>
       <div class="scratch-wrap">
-        <div id="scratch-reveal">💍 Komal &amp; Milind · 23 June 2026 💍</div>
+        <div id="scratch-reveal">💍 23 June 2026 · Tuesday 💍</div>
         <canvas id="scratch-canvas"></canvas>
       </div>
     </div>
 
     <div class="mid-divider"></div>
 
-    <!-- Date + confetti -->
+    <!-- Countdown -->
     <div class="date-area">
       <div id="confetti-root"></div>
       <p class="invited-script reveal">You're Invited!</p>
@@ -143,7 +156,7 @@
     </div>
   </div>
 
-  <!-- ░░ TRANSITION BAND: program ░░ -->
+  <!-- ░░ TIMELINE BAND ░░ -->
   <div class="band label-band reveal">
     <span class="band-icon">🕐</span>
     <p class="band-heading">Program Timeline</p>
@@ -153,14 +166,54 @@
   <!-- ░░ TIMELINE BLOCK ░░ -->
   <div class="block timeline-block">
     <div class="tl-track">
-      <div class="tl-row reveal"><div class="tl-dot"></div><div class="tl-body"><span class="tl-t">4:00 PM</span><span class="tl-e">Guest Arrival &amp; Baraat</span></div></div>
-      <div class="tl-row reveal"><div class="tl-dot"></div><div class="tl-body"><span class="tl-t">5:00 PM</span><span class="tl-e">Varmala Ceremony</span></div></div>
-      <div class="tl-row reveal"><div class="tl-dot"></div><div class="tl-body"><span class="tl-t">6:00 PM</span><span class="tl-e">Wedding Rituals &amp; Pheras</span></div></div>
-      <div class="tl-row reveal"><div class="tl-dot gold"></div><div class="tl-body"><span class="tl-t">8:00 PM</span><span class="tl-e">Dinner Reception &amp; Celebrations</span></div></div>
+
+      <!-- Day 1 heading -->
+      <div class="tl-day-label reveal">22nd June · Monday</div>
+
+      <div class="tl-row reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <span class="tl-t">1:00 PM</span>
+          <span class="tl-e">Maayra Ceremony</span>
+        </div>
+      </div>
+      <div class="tl-row reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <span class="tl-t">6:00 PM</span>
+          <span class="tl-e">Sangeet Night</span>
+        </div>
+      </div>
+
+      <!-- Day 2 heading -->
+      <div class="tl-day-label tl-day-label--2 reveal">23rd June · Tuesday</div>
+
+      <div class="tl-row reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <span class="tl-t">9:00 AM</span>
+          <span class="tl-e">Carnival Haldi &amp; Pool Party</span>
+        </div>
+      </div>
+      <div class="tl-row reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <span class="tl-t">6:00 PM</span>
+          <span class="tl-e">Jaimala / Varmala</span>
+        </div>
+      </div>
+      <div class="tl-row reveal">
+        <div class="tl-dot gold"></div>
+        <div class="tl-body">
+          <span class="tl-t">7:00 PM</span>
+          <span class="tl-e">Reception &amp; Dinner</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- ░░ TRANSITION BAND: ceremonies ░░ -->
+  <!-- ░░ CEREMONIES BAND ░░ -->
   <div class="band label-band reveal">
     <span class="band-icon">🌸</span>
     <p class="band-heading">Wedding Ceremonies</p>
@@ -170,14 +223,14 @@
   <!-- ░░ CEREMONIES BLOCK ░░ -->
   <div class="block ceremony-block">
     <div class="ceremony-grid">
+      <div class="c-card reveal"><span>🎁</span><p>Maayra</p></div>
+      <div class="c-card reveal"><span>🎶</span><p>Sangeet</p></div>
       <div class="c-card reveal"><span>💛</span><p>Haldi</p></div>
-      <div class="c-card reveal"><span>🎨</span><p>Mehendi</p></div>
-      <div class="c-card reveal"><span>🪔</span><p>Sangeet</p></div>
       <div class="c-card reveal"><span>🔥</span><p>Pheras</p></div>
     </div>
   </div>
 
-  <!-- ░░ TRANSITION BAND: venue ░░ -->
+  <!-- ░░ VENUE BAND ░░ -->
   <div class="band label-band reveal">
     <span class="band-icon">📍</span>
     <p class="band-heading">Venue</p>
@@ -200,7 +253,7 @@
     <a class="gold-btn reveal" href="https://maps.app.goo.gl/Eq84CRxLbdYQYB3m9" target="_blank" rel="noopener">Open on Google Maps</a>
   </div>
 
-  <!-- ░░ TRANSITION BAND: gifts ░░ -->
+  <!-- ░░ GIFTS BAND ░░ -->
   <div class="band label-band reveal">
     <span class="band-icon">🎁</span>
     <p class="band-heading">Gifts</p>
@@ -217,6 +270,7 @@
     <svg class="wv" viewBox="0 0 800 40" preserveAspectRatio="none"><path d="M0 20 Q100 5 200 20 Q300 35 400 20 Q500 5 600 20 Q700 35 800 20" fill="none" stroke="#c9933a" stroke-width="0.9" opacity="0.4"/></svg>
     <p class="footer-msg">We can't wait to celebrate with you!</p>
     <div class="hr-gold"></div>
+    <img src="css/logo.png" alt="K & M" class="footer-logo"/>
     <p class="footer-names">Komal &amp; Milind</p>
     <svg class="footer-mandala" viewBox="0 0 80 80">
       <g transform="translate(40,40)">
