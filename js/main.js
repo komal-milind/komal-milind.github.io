@@ -190,7 +190,7 @@
       canvas.width  = wrap.getBoundingClientRect().width  || 280;
       canvas.height = wrap.getBoundingClientRect().height || 90;
 
-      var ctx = canvas.getContext('2d');
+      var ctx = canvas.getContext('2d', { willReadFrequently: true });
 
       ctx.fillStyle = '#B8852E';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
