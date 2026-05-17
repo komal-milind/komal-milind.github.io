@@ -59,6 +59,12 @@
 
   envScreen.addEventListener('click', openEnvelope);
   envScreen.addEventListener('keydown', onEnvKey);
+  // also catch taps directly on the seal/hint which sits on top
+  var sealWrap = document.getElementById('env-seal-wrap') || document.querySelector('.env-seal-wrap');
+  if (sealWrap) {
+    sealWrap.addEventListener('click', function(e) { e.stopPropagation(); openEnvelope(); });
+    sealWrap.addEventListener('touchend', function(e) { e.preventDefault(); openEnvelope(); });
+  }
 
   /* ── All initialisations ── */
   function initAll() {
@@ -174,82 +180,91 @@
   /*  SCRATCH CARD                     */
   /* ────────────────────────────────── */
   function initScratch() {
-    var canvas = document.getElementById('scratch-canvas');
-    if (!canvas) return;
+    // Defer so the element is visible and has real dimensions
+    setTimeout(function() {
+      var canvas = document.getElementById('scratch-canvas');
+      if (!canvas) return;
 
-    var wrap = canvas.parentElement;
-    canvas.width = wrap.offsetWidth || 280;
-    canvas.height = wrap.offsetHeight || 90;
+      var wrap = canvas.parentElement;
+      // Force a reflow to get real dimensions
+      canvas.width  = wrap.getBoundingClientRect().width  || 280;
+      canvas.height = wrap.getBoundingClientRect().height || 90;
 
-    var ctx = canvas.getContext('2d');
+      var ctx = canvas.getContext('2d');
 
-    ctx.fillStyle = '#B8852E';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#B8852E';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#E8C06A';
+      ctx.font = 'bold 14px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('✦  Scratch here  ✦', canvas.width / 2, canvas.height / 2);
 
-    ctx.fillStyle = '#E8C06A';
-    ctx.font = 'bold 14px Lato, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('✦  Scratch here  ✦', canvas.width / 2, canvas.height / 2);
+      var isDrawing = false;
+      var scratched = false;
 
-    var isDrawing = false;
-    var scratched = false;
-
-    function getPos(e) {
-      var rect = canvas.getBoundingClientRect();
-      var scaleX = canvas.width / rect.width;
-      var scaleY = canvas.height / rect.height;
-      var src = e.touches ? e.touches[0] : e;
-      return {
-        x: (src.clientX - rect.left) * scaleX,
-        y: (src.clientY - rect.top) * scaleY
-      };
-    }
-
-    function scratch(x, y) {
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.beginPath();
-      ctx.arc(x, y, 22, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    function checkComplete() {
-      if (scratched) return;
-      var data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-      var total = data.length / 4;
-      var cleared = 0;
-      for (var i = 3; i < data.length; i += 4) {
-        if (data[i] === 0) cleared++;
+      function getPos(e) {
+        var rect = canvas.getBoundingClientRect();
+        var scaleX = canvas.width / rect.width;
+        var scaleY = canvas.height / rect.height;
+        var src = e.touches ? e.touches[0] : e;
+        return {
+          x: (src.clientX - rect.left) * scaleX,
+          y: (src.clientY - rect.top)  * scaleY
+        };
       }
-      if (cleared / total > 0.55) {
-        scratched = true;
-        canvas.style.transition = 'opacity 0.6s ease';
-        canvas.style.opacity = '0';
-        setTimeout(function () {
-          canvas.style.display = 'none';
-          // Reveal the date in the countdown block with a pop
-          var dateEl = document.getElementById('big-date-el');
-          var dayEl  = document.getElementById('date-day-el');
-          if (dateEl) { dateEl.classList.add('date-revealed'); }
-          if (dayEl)  { dayEl.classList.add('date-revealed'); }
-          // Scroll smoothly down to the countdown
-          var cdBlock = document.querySelector('.countdown-block');
-          if (cdBlock) {
-            setTimeout(function () {
-              cdBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 300);
+
+      function scratch(x, y) {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 22, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function checkComplete() {
+        if (scratched) return;
+        try {
+          var data  = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+          var total = data.length / 4;
+          var cleared = 0;
+          for (var i = 3; i < data.length; i += 4) {
+            if (data[i] === 0) cleared++;
           }
-        }, 700);
+          if (cleared / total > 0.55) {
+            scratched = true;
+            canvas.style.transition = 'opacity 0.6s ease';
+            canvas.style.opacity = '0';
+            setTimeout(function () {
+              canvas.style.display = 'none';
+              var dateEl = document.getElementById('big-date-el');
+              var dayEl  = document.getElementById('date-day-el');
+              if (dateEl) dateEl.classList.add('date-revealed');
+              if (dayEl)  dayEl.classList.add('date-revealed');
+              var cdBlock = document.querySelector('.countdown-block');
+              if (cdBlock) {
+                setTimeout(function () {
+                  cdBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+              }
+            }, 700);
+          }
+        } catch(e) {
+          // getImageData blocked (HTTPS canvas taint) — just complete on next check
+          scratched = true;
+          canvas.style.transition = 'opacity 0.6s ease';
+          canvas.style.opacity = '0';
+          setTimeout(function() { canvas.style.display = 'none'; }, 700);
+        }
       }
-    }
 
-    canvas.addEventListener('mousedown', function (e) { isDrawing = true; var p = getPos(e); scratch(p.x, p.y); });
-    canvas.addEventListener('mousemove', function (e) { if (!isDrawing) return; var p = getPos(e); scratch(p.x, p.y); checkComplete(); });
-    canvas.addEventListener('mouseup', function () { isDrawing = false; checkComplete(); });
-    canvas.addEventListener('mouseleave', function () { isDrawing = false; });
-    canvas.addEventListener('touchstart', function (e) { e.preventDefault(); isDrawing = true; var p = getPos(e); scratch(p.x, p.y); }, { passive: false });
-    canvas.addEventListener('touchmove', function (e) { e.preventDefault(); if (!isDrawing) return; var p = getPos(e); scratch(p.x, p.y); checkComplete(); }, { passive: false });
-    canvas.addEventListener('touchend', function () { isDrawing = false; checkComplete(); });
+      canvas.addEventListener('mousedown',  function(e) { isDrawing = true; scratch(getPos(e).x, getPos(e).y); });
+      canvas.addEventListener('mousemove',  function(e) { if (!isDrawing) return; var p = getPos(e); scratch(p.x, p.y); checkComplete(); });
+      canvas.addEventListener('mouseup',    function()  { isDrawing = false; checkComplete(); });
+      canvas.addEventListener('mouseleave', function()  { isDrawing = false; });
+      canvas.addEventListener('touchstart', function(e) { e.preventDefault(); isDrawing = true; scratch(getPos(e).x, getPos(e).y); }, { passive: false });
+      canvas.addEventListener('touchmove',  function(e) { e.preventDefault(); if (!isDrawing) return; var p = getPos(e); scratch(p.x, p.y); checkComplete(); }, { passive: false });
+      canvas.addEventListener('touchend',   function()  { isDrawing = false; checkComplete(); });
+    }, 100);
   }
 
   /* ────────────────────────────────── */
