@@ -9,8 +9,40 @@
   const envScreen = document.getElementById('envelope-screen');
   const invitation = document.getElementById('invitation');
 
+  function spawnSparks() {
+    var container = document.getElementById('env-sparks');
+    if (!container) return;
+    var cx = window.innerWidth / 2;
+    var cy = window.innerHeight / 2;
+    for (var i = 0; i < 18; i++) {
+      var s = document.createElement('div');
+      s.className = 'spark';
+      var angle = (i / 18) * Math.PI * 2;
+      var dist  = 40 + Math.random() * 80;
+      s.style.left = cx + 'px';
+      s.style.top  = cy + 'px';
+      s.style.setProperty('--sx', Math.cos(angle) * dist + 'px');
+      s.style.setProperty('--sy', Math.sin(angle) * dist + 'px');
+      s.style.animationDelay = (Math.random() * 0.15) + 's';
+      s.style.width  = (3 + Math.random() * 4) + 'px';
+      s.style.height = s.style.width;
+      container.appendChild(s);
+    }
+  }
+
   function openEnvelope() {
-    envScreen.classList.add('fade-out');
+    envScreen.removeEventListener('click', openEnvelope);
+    envScreen.removeEventListener('keydown', onEnvKey);
+
+    // 1 — sparks burst at centre
+    spawnSparks();
+
+    // 2 — after tiny delay, trigger the split
+    setTimeout(function () {
+      envScreen.classList.add('splitting');
+    }, 180);
+
+    // 3 — once panels are off-screen, reveal invitation
     setTimeout(function () {
       envScreen.style.display = 'none';
       invitation.classList.remove('hidden');
@@ -18,13 +50,15 @@
         invitation.classList.add('in');
       });
       initAll();
-    }, 1000);
+    }, 1350);
+  }
+
+  function onEnvKey(e) {
+    if (e.key === 'Enter' || e.key === ' ') openEnvelope();
   }
 
   envScreen.addEventListener('click', openEnvelope);
-  envScreen.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') openEnvelope();
-  });
+  envScreen.addEventListener('keydown', onEnvKey);
 
   /* ── All initialisations ── */
   function initAll() {
@@ -191,7 +225,21 @@
         scratched = true;
         canvas.style.transition = 'opacity 0.6s ease';
         canvas.style.opacity = '0';
-        setTimeout(function () { canvas.style.display = 'none'; }, 700);
+        setTimeout(function () {
+          canvas.style.display = 'none';
+          // Reveal the date in the countdown block with a pop
+          var dateEl = document.getElementById('big-date-el');
+          var dayEl  = document.getElementById('date-day-el');
+          if (dateEl) { dateEl.classList.add('date-revealed'); }
+          if (dayEl)  { dayEl.classList.add('date-revealed'); }
+          // Scroll smoothly down to the countdown
+          var cdBlock = document.querySelector('.countdown-block');
+          if (cdBlock) {
+            setTimeout(function () {
+              cdBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+          }
+        }, 700);
       }
     }
 

@@ -14,30 +14,59 @@
 <body>
 
 <!-- ══ ENVELOPE SCREEN ══ -->
-<div id="envelope-screen" role="button" tabindex="0" aria-label="Tap to open invitation">
-  <div class="env-bg-glow"></div>
-  <div class="env-content">
-    <svg id="env-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <clipPath id="envClip"><rect x="0" y="50" width="300" height="150" rx="6"/></clipPath>
-      </defs>
-      <rect x="0" y="50" width="300" height="150" rx="6" fill="#1e0408" stroke="#c9933a" stroke-width="1"/>
-      <line x1="0" y1="200" x2="150" y2="118" stroke="#3a1020" stroke-width="0.8"/>
-      <line x1="300" y1="200" x2="150" y2="118" stroke="#3a1020" stroke-width="0.8"/>
-      <path id="env-flap" d="M0 50 L150 130 L300 50 Z" fill="#2a0810" stroke="#c9933a" stroke-width="0.8"/>
-      <g clip-path="url(#envClip)" opacity="0.07">
-        <line x1="0" y1="50" x2="300" y2="200" stroke="#c9933a" stroke-width="0.6"/>
-        <line x1="50" y1="50" x2="300" y2="175" stroke="#c9933a" stroke-width="0.6"/>
-        <line x1="100" y1="50" x2="300" y2="150" stroke="#c9933a" stroke-width="0.6"/>
-        <line x1="0" y1="75" x2="250" y2="200" stroke="#c9933a" stroke-width="0.6"/>
-        <line x1="0" y1="100" x2="200" y2="200" stroke="#c9933a" stroke-width="0.6"/>
-      </g>
-      <circle cx="150" cy="128" r="22" fill="#7b1e2e" stroke="#c9933a" stroke-width="1.5"/>
-      <circle cx="150" cy="128" r="17" fill="none" stroke="#c9933a" stroke-width="0.6" opacity="0.5"/>
-      <text x="150" y="135" text-anchor="middle" font-size="18" fill="#e8c06a" font-family="serif">ॐ</text>
+<div id="envelope-screen" aria-label="Tap to open invitation">
+
+  <!-- Left panel (slides left on open) -->
+  <div class="env-panel env-left">
+    <svg class="env-lines" viewBox="0 0 50 100" preserveAspectRatio="none">
+      <!-- top-left corner of flap -->
+      <line x1="50" y1="0" x2="0" y2="38" stroke="#c9933a" stroke-width="0.4" opacity="0.7"/>
+      <!-- bottom folds -->
+      <line x1="0" y1="100" x2="50" y2="62" stroke="#c9933a" stroke-width="0.4" opacity="0.5"/>
+      <!-- subtle diagonal pattern -->
+      <line x1="0" y1="20" x2="50" y2="55"  stroke="#c9933a" stroke-width="0.15" opacity="0.2"/>
+      <line x1="0" y1="45" x2="50" y2="75"  stroke="#c9933a" stroke-width="0.15" opacity="0.2"/>
+      <line x1="0" y1="70" x2="35" y2="100" stroke="#c9933a" stroke-width="0.15" opacity="0.2"/>
     </svg>
+    <!-- vertical centre seam on left edge -->
+    <div class="env-seam"></div>
+  </div>
+
+  <!-- Right panel (slides right on open) -->
+  <div class="env-panel env-right">
+    <svg class="env-lines" viewBox="0 0 50 100" preserveAspectRatio="none">
+      <line x1="0" y1="0"   x2="50" y2="38"  stroke="#c9933a" stroke-width="0.4" opacity="0.7"/>
+      <line x1="50" y1="100" x2="0" y2="62"  stroke="#c9933a" stroke-width="0.4" opacity="0.5"/>
+      <line x1="50" y1="20"  x2="0" y2="55"  stroke="#c9933a" stroke-width="0.15" opacity="0.2"/>
+      <line x1="50" y1="45"  x2="0" y2="75"  stroke="#c9933a" stroke-width="0.15" opacity="0.2"/>
+      <line x1="50" y1="70"  x2="15" y2="100" stroke="#c9933a" stroke-width="0.15" opacity="0.2"/>
+    </svg>
+    <div class="env-seam env-seam-right"></div>
+  </div>
+
+  <!-- Flap — peels up and fades -->
+  <div class="env-flap-full">
+    <svg viewBox="0 0 100 45" preserveAspectRatio="none">
+      <path d="M0 0 L50 42 L100 0 Z" fill="#1a0305" stroke="#c9933a" stroke-width="0.5" opacity="0.9"/>
+    </svg>
+  </div>
+
+  <!-- Centre seal + tap hint -->
+  <div class="env-seal-wrap" role="button" tabindex="0">
+    <div class="env-seal-glow"></div>
+    <div class="env-seal">
+      <svg viewBox="0 0 60 60">
+        <circle cx="30" cy="30" r="28" fill="#7b1e2e" stroke="#c9933a" stroke-width="1.2"/>
+        <circle cx="30" cy="30" r="22" fill="none" stroke="#c9933a" stroke-width="0.5" opacity="0.5"/>
+        <text x="30" y="36" text-anchor="middle" font-size="22" fill="#e8c06a" font-family="serif">ॐ</text>
+      </svg>
+    </div>
     <p class="tap-hint">Tap to Open</p>
   </div>
+
+  <!-- Sparkle particles (injected by JS) -->
+  <div id="env-sparks"></div>
+
 </div>
 
 <!-- ══ INVITATION ══ -->
@@ -79,7 +108,7 @@
         <text text-anchor="middle" dominant-baseline="central" font-size="24" fill="#e8c06a" font-family="serif">ॐ</text>
       </g>
     </svg>
-    <h1 class="ganesh-title">॥ श्री गणेशाय नमः॥</h1>
+    <h1 class="ganesh-title">॥ श्री गणेशाय नमः ॥</h1>
     <div class="hr-gold"></div>
     <p class="ganesh-hashtag">#koi_mil_gayaa_</p>
   </div>
@@ -125,33 +154,31 @@
     <svg class="wv" viewBox="0 0 800 40" preserveAspectRatio="none"><path d="M0 20 Q100 35 200 20 Q300 5 400 20 Q500 35 600 20 Q700 5 800 20" fill="none" stroke="#c9933a" stroke-width="0.9"/></svg>
   </div>
 
-  <!-- ░░ SCRATCH + DATE BLOCK ░░ -->
-  <div class="block mid-block">
-    <!-- Scratch card — reveals the wedding date only -->
+  <!-- ░░ SCRATCH BLOCK ░░ -->
+  <div class="block scratch-block">
+    <div id="confetti-root"></div>
+    <p class="invited-script reveal">You're Invited!</p>
     <div class="scratch-card reveal">
-      <p class="card-label">✦ Scratch to Reveal ✦</p>
+      <p class="card-label">✦ Scratch to Reveal the Date ✦</p>
       <div class="scratch-wrap">
         <div id="scratch-reveal">💍 23 June 2026 · Tuesday 💍</div>
         <canvas id="scratch-canvas"></canvas>
       </div>
     </div>
+    <p class="scratch-nudge reveal">go on, scratch it 👆</p>
+  </div>
 
-    <div class="mid-divider"></div>
-
-    <!-- Countdown -->
-    <div class="date-area">
-      <div id="confetti-root"></div>
-      <p class="invited-script reveal">You're Invited!</p>
-      <h2 class="big-date reveal">23rd June, 2026</h2>
-      <p class="date-day reveal">Tuesday · Red River Retreat, Kaziranga</p>
-      <div class="hr-gold reveal"></div>
-      <p class="cd-heading reveal">Counting Down to Forever</p>
-      <div class="countdown reveal">
-        <div class="cd-box"><span class="cd-n" id="cd-d">--</span><span class="cd-l">Days</span></div>
-        <div class="cd-box"><span class="cd-n" id="cd-h">--</span><span class="cd-l">Hours</span></div>
-        <div class="cd-box"><span class="cd-n" id="cd-m">--</span><span class="cd-l">Mins</span></div>
-        <div class="cd-box"><span class="cd-n" id="cd-s">--</span><span class="cd-l">Secs</span></div>
-      </div>
+  <!-- ░░ COUNTDOWN BLOCK ░░ -->
+  <div class="block countdown-block">
+    <h2 class="big-date" id="big-date-el">23rd June, 2026</h2>
+    <p class="date-day" id="date-day-el">Tuesday · Red River Retreat, Kaziranga</p>
+    <div class="hr-gold"></div>
+    <p class="cd-heading reveal">Counting Down to Forever</p>
+    <div class="countdown reveal">
+      <div class="cd-box"><span class="cd-n" id="cd-d">--</span><span class="cd-l">Days</span></div>
+      <div class="cd-box"><span class="cd-n" id="cd-h">--</span><span class="cd-l">Hours</span></div>
+      <div class="cd-box"><span class="cd-n" id="cd-m">--</span><span class="cd-l">Mins</span></div>
+      <div class="cd-box"><span class="cd-n" id="cd-s">--</span><span class="cd-l">Secs</span></div>
     </div>
   </div>
 
@@ -198,7 +225,7 @@
         <div class="tl-dot"></div>
         <div class="tl-body">
           <span class="tl-t">6:00 PM</span>
-          <span class="tl-e">Varmala</span>
+          <span class="tl-e">Jaimala / Varmala</span>
         </div>
       </div>
       <div class="tl-row reveal">
@@ -287,6 +314,7 @@
       </g>
     </svg>
     <svg class="wv" viewBox="0 0 800 40" preserveAspectRatio="none"><path d="M0 20 Q100 35 200 20 Q300 5 400 20 Q500 35 600 20 Q700 5 800 20" fill="none" stroke="#c9933a" stroke-width="0.9" opacity="0.4"/></svg>
+    <p class="footer-shubh">शुभ विवाह की हार्दिक शुभकामनाएँ</p>
     <p class="footer-fine">23 June 2026 · Red River Retreat, Kaziranga</p>
   </div>
 
